@@ -5,14 +5,14 @@ from fastapi import Depends, Request
 from fastapi_users import BaseUserManager, IntegerIDMixin
 from config import JWT_SECRET
 
-from models import User, get_user_db
+from .models import User, get_user_db
 
 SECRET = JWT_SECRET
 
 
 class UserManager(IntegerIDMixin, BaseUserManager[User, uuid.UUID]):
-    reset_password_token_secret = SECRET # type: ignore
-    verification_token_secret = SECRET # type: ignore
+    reset_password_token_secret = SECRET  # type: ignore
+    verification_token_secret = SECRET  # type: ignore
 
     async def on_after_register(self, user: User, request: Optional[Request] = None):
         print(f"User {user.id} has registered.")

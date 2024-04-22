@@ -2,7 +2,7 @@
 .idea
 **/__pycache__
 backend/.env
-backend/venv
+backend/env
 
 
 # dependencies

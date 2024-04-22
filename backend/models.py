@@ -4,6 +4,7 @@ from sqlalchemy import Column, String, Integer
 Base: DeclarativeMeta = declarative_base()
 
 class Game(Base):
+    __tablename__ = "GameTable"
     id = Column(Integer, primary_key=True)
     user_bank = Column(Integer, nullable=False, default=0)
     wager = Column(Integer, nullable=False, default=0)
