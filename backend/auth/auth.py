@@ -1,7 +1,11 @@
-from fastapi_users.authentication import BearerTransport, AuthenticationBackend
-from fastapi_users.authentication import JWTStrategy
-from config import JWT_SECRET
+from fastapi_users.authentication import (
+    AuthenticationBackend,
+    BearerTransport,
+    CookieTransport,
+    JWTStrategy,
+)
 
+from config import JWT_SECRET
 
 cookie_transport = CookieTransport(cookie_max_age=3600)
 
