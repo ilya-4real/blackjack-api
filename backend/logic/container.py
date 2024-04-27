@@ -4,12 +4,13 @@ from punq import Container, Scope
 
 from infra.repository.room.inmemory import InMemoryRoomRepository
 from infra.repository.room.interface import RoomRepository
-from logic.commands.base import BaseCommandHandler
 from logic.commands.room import (
     ConnectToRoomCommand,
     ConnectToRoomCommandHandler,
     CreateRoomCommand,
     CreateRoomCommandHandler,
+    LeaveRoomCommand,
+    LeaveRoomCommandHandler,
 )
 from logic.mediator.eventmediator import EventMediator
 from logic.mediator.mediator import Mediator
@@ -23,9 +24,12 @@ def init_container() -> Container:
 def _init_container() -> Container:
     container = Container()
 
-    container.register(RoomRepository, InMemoryRoomRepository)
+    container.register(
+        RoomRepository, InMemoryRoomRepository, scope=Scope.singleton
+    )
     container.register(CreateRoomCommandHandler)
     container.register(ConnectToRoomCommandHandler)
+    container.register(LeaveRoomCommandHandler)
 
     def init_mediator():
         mediator = Mediator()
@@ -37,6 +41,10 @@ def _init_container() -> Container:
         mediator.register_command(
             ConnectToRoomCommand,
             [container.resolve(ConnectToRoomCommandHandler)],  # type: ignore
+        )
+        mediator.register_command(
+            LeaveRoomCommand,
+            [container.resolve(LeaveRoomCommandHandler)],  # type: ignore
         )
         return mediator
 

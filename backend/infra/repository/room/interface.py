@@ -17,3 +17,7 @@ class RoomRepository(ABC):
     @abstractmethod
     def add_player_to_room(self, player: Player, room_id: UUID) -> None:
         raise NotImplementedError
+
+    @abstractmethod
+    def remove_player_from_room(self, player: Player, room_id: UUID) -> None:
+        raise NotImplementedError

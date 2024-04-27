@@ -1,4 +1,3 @@
-from abc import ABC, abstractmethod
 from collections import defaultdict
 from dataclasses import dataclass, field
 from typing import Any, Iterable
@@ -40,6 +39,7 @@ class Mediator(EventMediator):
 
     def handle_command(self, command: BaseCommand) -> list[Any]:
         command_type = command.__class__
+        print(123)
         return [
             handler.handle(command)
             for handler in self.commands_map[command_type]

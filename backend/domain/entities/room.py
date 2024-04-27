@@ -15,9 +15,13 @@ class RoomStatus(Enum):
 
 @dataclass
 class Room(BaseEntity):
+    owner: Player
     status: RoomStatus = field(default=RoomStatus.WAITING)
     players: set[Player] = field(default_factory=set)
     game: Game = field(init=False)
+
+    def __post_init__(self):
+        self.players.add(self.owner)
 
     def start_new_game(self):
         if self.status == RoomStatus.IN_GAME:

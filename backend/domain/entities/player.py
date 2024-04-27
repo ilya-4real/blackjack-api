@@ -1,5 +1,4 @@
 from dataclasses import dataclass
-from typing import Literal
 
 from domain.entities.base import BaseEntity
 from domain.values.bank import Bank

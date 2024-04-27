@@ -17,3 +17,7 @@ class InMemoryRoomRepository(RoomRepository):
     def add_player_to_room(self, player: Player, room_id: UUID) -> None:
         room = [room for room in self.rooms if room.oid == room_id][0]
         room.connect_player(player)
+
+    def remove_player_from_room(self, player: Player, room_id: UUID) -> None:
+        room = [room for room in self.rooms if room.oid == room_id][0]
+        room.disconnect_player(player)
