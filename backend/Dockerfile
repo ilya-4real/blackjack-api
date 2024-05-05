@@ -1,9 +1,9 @@
 FROM python:3.12.1-slim-bullseye
 
 
-WORKDIR /app
+WORKDIR /blackjack
 
-ADD pyproject.toml /app/
+ADD pyproject.toml /blackjack/
 
 RUN apt update -y && \
     apt install -y python3-dev \
@@ -17,4 +17,4 @@ RUN pip install poetry
 RUN poetry config virtualenvs.create false
 RUN poetry install --no-root --no-interaction --no-ansi
 
-COPY . /app/
+COPY . /blackjack/

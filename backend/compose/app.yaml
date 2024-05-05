@@ -12,9 +12,14 @@ services:
     env_file:
       - ../.env
     volumes:
-      - ../app:/app/app
+      - ../app/:/blackjack/app/:z
+    userns-remap:
+      - host:ilya
+      - container:root
     networks:
       - backend
+
+
 
 networks:
   backend:
